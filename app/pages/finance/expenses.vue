@@ -1,6 +1,46 @@
 <script setup lang="ts">
+const columns = [
+  { key: 'employee', label: 'Employee' },
+  { key: 'category', label: 'Category', type: 'badge' as const },
+  { key: 'description', label: 'Description' },
+  { key: 'amount', label: 'Amount', type: 'currency' as const },
+  { key: 'date', label: 'Date', type: 'date' as const },
+  { key: 'status', label: 'Status', type: 'badge' as const },
+]
+
+const formFields = [
+  { key: 'employee', label: 'Employee', placeholder: 'Sarah Johnson' },
+  { key: 'category', label: 'Category', type: 'select' as const, options: [
+    { label: 'Travel', value: 'Travel' }, { label: 'Meals', value: 'Meals' },
+    { label: 'Office Supplies', value: 'Office Supplies' }, { label: 'Software', value: 'Software' },
+    { label: 'Equipment', value: 'Equipment' }, { label: 'Training', value: 'Training' },
+    { label: 'Client Entertainment', value: 'Client Entertainment' }, { label: 'Mileage', value: 'Mileage' },
+  ] },
+  { key: 'description', label: 'Description', placeholder: 'Business dinner with client' },
+  { key: 'amount', label: 'Amount ($)', type: 'number' as const, placeholder: '250' },
+  { key: 'date', label: 'Date', type: 'date' as const },
+  { key: 'status', label: 'Status', type: 'select' as const, options: [
+    { label: 'Pending', value: 'Pending' }, { label: 'Approved', value: 'Approved' },
+    { label: 'Rejected', value: 'Rejected' }, { label: 'Paid', value: 'Paid' },
+  ] },
+]
+
+const seedData = [
+  { id: 'ex1', employee: 'Sarah Johnson', category: 'Travel', description: 'Flight to NYC for client meeting', amount: 580, date: '2026-02-10', status: 'Approved' },
+  { id: 'ex2', employee: 'David Kim', category: 'Software', description: 'Figma annual subscription', amount: 144, date: '2026-02-08', status: 'Paid' },
+  { id: 'ex3', employee: 'Emily Rodriguez', category: 'Client Entertainment', description: 'Dinner with Meridian Corp team', amount: 345, date: '2026-02-11', status: 'Pending' },
+  { id: 'ex4', employee: 'Michael Chen', category: 'Equipment', description: 'External monitor for home office', amount: 489, date: '2026-02-05', status: 'Approved' },
+  { id: 'ex5', employee: 'Priya Patel', category: 'Training', description: 'AWS certification course', amount: 300, date: '2026-02-03', status: 'Paid' },
+  { id: 'ex6', employee: 'Lisa Chang', category: 'Travel', description: 'Hotel - Chicago HR conference', amount: 890, date: '2026-02-09', status: 'Approved' },
+  { id: 'ex7', employee: 'James Wilson', category: 'Meals', description: 'Team lunch - marketing brainstorm', amount: 185, date: '2026-02-12', status: 'Pending' },
+  { id: 'ex8', employee: 'Robert Martinez', category: 'Travel', description: 'Uber rides - investor meetings', amount: 124, date: '2026-02-07', status: 'Paid' },
+  { id: 'ex9', employee: 'Anna Kowalski', category: 'Office Supplies', description: 'Printer paper and toner', amount: 86, date: '2026-02-06', status: 'Approved' },
+  { id: 'ex10', employee: 'Thomas Wright', category: 'Mileage', description: 'Client site visit - 120 miles', amount: 79, date: '2026-02-13', status: 'Pending' },
+  { id: 'ex11', employee: 'Sarah Johnson', category: 'Meals', description: 'Coffee meeting with prospects', amount: 42, date: '2026-02-13', status: 'Pending' },
+  { id: 'ex12', employee: 'Marcus Thompson', category: 'Training', description: 'Salesforce admin certification', amount: 200, date: '2026-02-01', status: 'Rejected' },
+]
 </script>
 
 <template>
-  <ErpModulePage title="Expenses" description="Employee expense management with receipt capture, approval workflows, reimbursement tracking, and policy enforcement." icon="i-lucide-credit-card" status="available" :stats="[ { label: 'Pending Claims', value: '34' }, { label: 'This Month', value: '$48.2K' }, { label: 'Avg. Approval', value: '1.8 days' }, { label: 'Policy Violations', value: '3' } ]" :features="[ { title: 'Expense Claims', description: 'Easy expense submission with receipt photo capture, OCR extraction, and automatic categorization.', icon: 'i-lucide-camera' }, { title: 'Policy Engine', description: 'Configurable expense policies with per-diem limits, category caps, and automatic violation flagging.', icon: 'i-lucide-shield' }, { title: 'Approval Workflow', description: 'Multi-level approval chains with delegation support, escalation rules, and mobile approvals.', icon: 'i-lucide-check-circle' }, { title: 'Mileage Tracking', description: 'GPS-based mileage logging with IRS rate calculation and route verification for travel claims.', icon: 'i-lucide-car' }, { title: 'Corporate Cards', description: 'Corporate card transaction import and reconciliation with automatic expense entry creation.', icon: 'i-lucide-credit-card' }, { title: 'Reimbursement', description: 'Batch reimbursement processing with direct deposit integration and payment status tracking.', icon: 'i-lucide-banknote' } ]" />
+  <ErpCrudPage store-key="fin-expenses" title="Expenses" description="Employee expense management with receipt capture and approval workflows." icon="i-lucide-credit-card" entity-name="Expense" :columns="columns" :form-fields="formFields" :initial-data="seedData" />
 </template>

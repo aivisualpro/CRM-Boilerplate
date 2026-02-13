@@ -1,6 +1,49 @@
 <script setup lang="ts">
+const columns = [
+  { key: 'code', label: 'Code' },
+  { key: 'name', label: 'Account Name' },
+  { key: 'type', label: 'Type', type: 'badge' as const },
+  { key: 'balance', label: 'Balance', type: 'currency' as const },
+  { key: 'currency', label: 'Currency' },
+  { key: 'status', label: 'Status', type: 'badge' as const },
+]
+
+const formFields = [
+  { key: 'code', label: 'Account Code', placeholder: '1000' },
+  { key: 'name', label: 'Account Name', placeholder: 'Cash & Equivalents' },
+  { key: 'type', label: 'Account Type', type: 'select' as const, options: [
+    { label: 'Asset', value: 'Asset' }, { label: 'Liability', value: 'Liability' },
+    { label: 'Equity', value: 'Equity' }, { label: 'Revenue', value: 'Revenue' }, { label: 'Expense', value: 'Expense' },
+  ] },
+  { key: 'balance', label: 'Balance ($)', type: 'number' as const, placeholder: '50000' },
+  { key: 'currency', label: 'Currency', type: 'select' as const, options: [
+    { label: 'USD', value: 'USD' }, { label: 'EUR', value: 'EUR' }, { label: 'GBP', value: 'GBP' }, { label: 'CAD', value: 'CAD' },
+  ] },
+  { key: 'status', label: 'Status', type: 'select' as const, options: [
+    { label: 'Active', value: 'Active' }, { label: 'Inactive', value: 'Inactive' },
+  ] },
+  { key: 'description', label: 'Description', type: 'textarea' as const, placeholder: 'Account description...' },
+]
+
+const seedData = [
+  { id: 'ac1', code: '1000', name: 'Cash & Cash Equivalents', type: 'Asset', balance: 485000, currency: 'USD', status: 'Active' },
+  { id: 'ac2', code: '1100', name: 'Accounts Receivable', type: 'Asset', balance: 342000, currency: 'USD', status: 'Active' },
+  { id: 'ac3', code: '1200', name: 'Inventory', type: 'Asset', balance: 1800000, currency: 'USD', status: 'Active' },
+  { id: 'ac4', code: '1500', name: 'Fixed Assets', type: 'Asset', balance: 950000, currency: 'USD', status: 'Active' },
+  { id: 'ac5', code: '2000', name: 'Accounts Payable', type: 'Liability', balance: 186000, currency: 'USD', status: 'Active' },
+  { id: 'ac6', code: '2100', name: 'Accrued Expenses', type: 'Liability', balance: 45000, currency: 'USD', status: 'Active' },
+  { id: 'ac7', code: '2500', name: 'Long-Term Debt', type: 'Liability', balance: 520000, currency: 'USD', status: 'Active' },
+  { id: 'ac8', code: '3000', name: 'Common Stock', type: 'Equity', balance: 1000000, currency: 'USD', status: 'Active' },
+  { id: 'ac9', code: '3100', name: 'Retained Earnings', type: 'Equity', balance: 2340000, currency: 'USD', status: 'Active' },
+  { id: 'ac10', code: '4000', name: 'Product Revenue', type: 'Revenue', balance: 4560000, currency: 'USD', status: 'Active' },
+  { id: 'ac11', code: '4100', name: 'Service Revenue', type: 'Revenue', balance: 1890000, currency: 'USD', status: 'Active' },
+  { id: 'ac12', code: '5000', name: 'Cost of Goods Sold', type: 'Expense', balance: 2100000, currency: 'USD', status: 'Active' },
+  { id: 'ac13', code: '6000', name: 'Salaries & Wages', type: 'Expense', balance: 1560000, currency: 'USD', status: 'Active' },
+  { id: 'ac14', code: '6100', name: 'Marketing & Advertising', type: 'Expense', balance: 340000, currency: 'USD', status: 'Active' },
+  { id: 'ac15', code: '7000', name: 'EUR Operating Account', type: 'Asset', balance: 125000, currency: 'EUR', status: 'Active' },
+]
 </script>
 
 <template>
-  <ErpModulePage title="Accounts" description="Chart of accounts management with multi-entity support, account hierarchies, and financial statement configuration." icon="i-lucide-wallet" status="available" :stats="[ { label: 'Total Accounts', value: '156' }, { label: 'Assets', value: '$2.4M' }, { label: 'Liabilities', value: '$890K' }, { label: 'Net Worth', value: '$1.5M' } ]" :features="[ { title: 'Chart of Accounts', description: 'Hierarchical account structure with asset, liability, equity, revenue, and expense classifications.', icon: 'i-lucide-list-tree' }, { title: 'Journal Entries', description: 'Double-entry bookkeeping with debit/credit validation, recurring entries, and reversing entries.', icon: 'i-lucide-book-open' }, { title: 'Multi-Entity', description: 'Manage accounts across multiple business entities with consolidated reporting and intercompany reconciliation.', icon: 'i-lucide-buildings' }, { title: 'Bank Reconciliation', description: 'Automated bank feed import and reconciliation with rule-based transaction matching.', icon: 'i-lucide-check-circle' }, { title: 'Financial Statements', description: 'Auto-generated balance sheets, income statements, and cash flow statements with drill-down capabilities.', icon: 'i-lucide-file-text' }, { title: 'Audit Trail', description: 'Complete audit trail of every transaction with user attribution, timestamps, and change history.', icon: 'i-lucide-shield' } ]" />
+  <ErpCrudPage store-key="fin-accounts" title="Chart of Accounts" description="Hierarchical account structure with financial statement configuration." icon="i-lucide-wallet" entity-name="Account" :columns="columns" :form-fields="formFields" :initial-data="seedData" />
 </template>
