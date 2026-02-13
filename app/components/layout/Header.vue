@@ -1,54 +1,42 @@
 <script setup lang="ts">
 const route = useRoute()
+const { headerState, clearHeader } = usePageHeader()
 
-function setLinks() {
-  if (route.fullPath === '/') {
-    return [{ title: 'Home', href: '/' }]
-  }
-
-  const segments = route.fullPath.split('/').filter(item => item !== '')
-
-  const breadcrumbs = segments.map((item, index) => {
-    const str = item.replace(/-/g, ' ')
-    const title = str
-      .split(' ')
-      .map(word => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
-      .join(' ')
-
-    return {
-      title,
-      href: `/${segments.slice(0, index + 1).join('/')}`,
-    }
-  })
-
-  return [{ title: 'Home', href: '/' }, ...breadcrumbs]
-}
-
-const links = ref<{
-  title: string
-  href: string
-}[]>(setLinks())
-
-watch(() => route.fullPath, (val) => {
-  if (val) {
-    links.value = setLinks()
-  }
+// Clear header state on route change so pages without setHeader() don't show stale info
+watch(() => route.fullPath, () => {
+  clearHeader()
 })
+
+// Derive fallback title from route when no explicit title is set
+const fallbackTitle = computed(() => {
+  if (route.fullPath === '/') return 'Dashboard'
+  const segments = route.fullPath.split('/').filter(s => s !== '')
+  const last = segments[segments.length - 1] || ''
+  return last
+    .replace(/-/g, ' ')
+    .split(' ')
+    .map(w => w.charAt(0).toUpperCase() + w.slice(1).toLowerCase())
+    .join(' ')
+})
+
+const displayTitle = computed(() => headerState.title || fallbackTitle.value)
 </script>
 
 <template>
   <header class="sticky top-0 md:peer-data-[variant=inset]:top-2 z-10 h-(--header-height) flex items-center gap-4 border-b bg-background px-4 md:px-6 md:rounded-tl-xl md:rounded-tr-xl">
-    <div class="w-full flex items-center gap-4 h-4">
+    <div class="flex items-center gap-4 min-w-0">
       <SidebarTrigger />
-      <Separator orientation="vertical" />
-      <BaseBreadcrumbCustom :links="links" />
+      <Separator orientation="vertical" class="h-4" />
+      <div class="flex items-center gap-2.5 min-w-0">
+        <Icon v-if="headerState.icon" :name="headerState.icon" class="size-5 shrink-0 text-primary" />
+        <div class="min-w-0">
+          <h1 class="text-sm font-semibold leading-tight truncate">{{ displayTitle }}</h1>
+          <p v-if="headerState.description" class="text-xs text-muted-foreground leading-tight truncate hidden md:block">{{ headerState.description }}</p>
+        </div>
+      </div>
     </div>
-    <div class="ml-auto">
+    <div class="ml-auto flex items-center gap-2">
       <slot />
     </div>
   </header>
 </template>
-
-<style scoped>
-
-</style>

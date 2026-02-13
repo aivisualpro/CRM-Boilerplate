@@ -147,16 +147,15 @@ const priorityColors: Record<string, string> = {
   Medium: 'bg-amber-500/10 text-amber-600 dark:text-amber-400 border-amber-200 dark:border-amber-800',
   Low: 'bg-blue-500/10 text-blue-600 dark:text-blue-400 border-blue-200 dark:border-blue-800',
 }
+
+const { setHeader } = usePageHeader()
+setHeader({ title: 'Business Health', icon: 'i-lucide-heart-pulse', description: 'Comprehensive health assessment with actionable insights' })
 </script>
 
 <template>
   <div class="w-full flex flex-col gap-6">
-    <!-- Header -->
-    <div class="flex flex-wrap items-center justify-between gap-4">
-      <div>
-        <h2 class="text-2xl font-bold tracking-tight">Business Health</h2>
-        <p class="text-muted-foreground text-sm">Comprehensive health assessment with actionable insights</p>
-      </div>
+    <!-- Export -->
+    <div class="flex items-center justify-end">
       <Button variant="outline">
         <Icon name="i-lucide-download" class="mr-2 size-4" />
         Export Report

@@ -18,26 +18,18 @@ const statusConfig = computed(() => {
       return { label: 'Coming Soon', class: 'bg-primary/10 text-primary border-primary/20' }
   }
 })
+
+const { setHeader } = usePageHeader()
+setHeader({ title: props.title, description: props.description, icon: props.icon })
 </script>
 
 <template>
   <div class="w-full flex flex-col gap-6">
-    <!-- Header -->
-    <div class="flex flex-wrap items-start justify-between gap-4">
-      <div class="flex items-start gap-4">
-        <div class="flex items-center justify-center rounded-xl bg-primary/10 p-3">
-          <Icon :name="icon" class="size-7 text-primary" />
-        </div>
-        <div>
-          <div class="flex items-center gap-3">
-            <h2 class="text-2xl font-bold tracking-tight">{{ title }}</h2>
-            <Badge variant="outline" :class="statusConfig.class">
-              {{ statusConfig.label }}
-            </Badge>
-          </div>
-          <p class="mt-1 text-muted-foreground max-w-2xl">{{ description }}</p>
-        </div>
-      </div>
+    <!-- Toolbar -->
+    <div class="flex items-center justify-between gap-4">
+      <Badge variant="outline" :class="statusConfig.class">
+        {{ statusConfig.label }}
+      </Badge>
       <div class="flex items-center gap-2">
         <Button variant="outline" size="sm">
           <Icon name="i-lucide-download" class="mr-1 size-4" />

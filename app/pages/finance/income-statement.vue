@@ -99,32 +99,29 @@ const marginTrend = [
   { month: 'Nov', gross: 48.8, operating: 23.8, net: 17.8 },
   { month: 'Dec', gross: 49.5, operating: 24.4, net: 18.5 },
 ]
+
+const { setHeader } = usePageHeader()
+setHeader({ title: 'Income Statement', icon: 'i-lucide-receipt', description: 'Consolidated statement of profit & loss' })
 </script>
 
 <template>
   <div class="w-full flex flex-col gap-6">
-    <!-- Header -->
-    <div class="flex flex-wrap items-center justify-between gap-4">
-      <div>
-        <h2 class="text-2xl font-bold tracking-tight">Income Statement</h2>
-        <p class="text-muted-foreground text-sm">Consolidated statement of profit & loss</p>
-      </div>
-      <div class="flex items-center gap-2">
-        <Select v-model="period">
-          <SelectTrigger class="w-36">
-            <SelectValue placeholder="Period" />
-          </SelectTrigger>
-          <SelectContent>
-            <SelectItem value="FY 2025">FY 2025</SelectItem>
-            <SelectItem value="FY 2024">FY 2024</SelectItem>
-            <SelectItem value="FY 2023">FY 2023</SelectItem>
-          </SelectContent>
-        </Select>
-        <Button variant="outline">
-          <Icon name="i-lucide-download" class="mr-2 size-4" />
-          Export
-        </Button>
-      </div>
+    <!-- Period & Export -->
+    <div class="flex items-center justify-end gap-2">
+      <Select v-model="period">
+        <SelectTrigger class="w-36">
+          <SelectValue placeholder="Period" />
+        </SelectTrigger>
+        <SelectContent>
+          <SelectItem value="FY 2025">FY 2025</SelectItem>
+          <SelectItem value="FY 2024">FY 2024</SelectItem>
+          <SelectItem value="FY 2023">FY 2023</SelectItem>
+        </SelectContent>
+      </Select>
+      <Button variant="outline">
+        <Icon name="i-lucide-download" class="mr-2 size-4" />
+        Export
+      </Button>
     </div>
 
     <!-- KPI Cards -->

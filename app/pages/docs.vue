@@ -1,6 +1,9 @@
 <script setup lang="ts">
 import NumberFlow from '@number-flow/vue'
 
+const { setHeader } = usePageHeader()
+setHeader({ title: 'Documentation', icon: 'i-lucide-book-open', description: 'Full Stack CRM & ERP platform overview' })
+
 const stats = ref({
   modules: 0,
   components: 0,
@@ -430,32 +433,7 @@ const industries = [
       </div>
     </Card>
 
-    <!-- Quick Start -->
-    <Card>
-      <CardHeader>
-        <div class="flex items-center gap-3">
-          <div class="flex items-center justify-center rounded-lg bg-primary/10 p-2">
-            <Icon name="i-lucide-terminal" class="size-5 text-primary" />
-          </div>
-          <div>
-            <CardTitle>Quick Start</CardTitle>
-            <CardDescription>Get up and running in under 2 minutes</CardDescription>
-          </div>
-        </div>
-      </CardHeader>
-      <CardContent>
-        <div class="rounded-lg bg-muted/50 border p-4 font-mono text-sm space-y-2">
-          <p class="text-muted-foreground"># Clone the repository</p>
-          <p>git clone your-repo-url.git</p>
-          <p class="text-muted-foreground mt-3"># Install dependencies</p>
-          <p>cd CRM-Boilerplate && pnpm install</p>
-          <p class="text-muted-foreground mt-3"># Start development server</p>
-          <p>pnpm run dev</p>
-          <p class="text-muted-foreground mt-3"># Open in browser</p>
-          <p>http://localhost:3000</p>
-        </div>
-      </CardContent>
-    </Card>
+
 
     <!-- Footer -->
     <div class="text-center py-4 border-t">

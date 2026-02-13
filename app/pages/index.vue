@@ -29,18 +29,16 @@ watch(isDesktop, () => {
     timeRange.value = '7d'
   }
 }, { immediate: true })
+
+const { setHeader } = usePageHeader()
+setHeader({ title: 'Dashboard', icon: 'i-lucide-layout-dashboard', description: 'Overview of key metrics and performance' })
 </script>
 
 <template>
   <div class="w-full flex flex-col gap-4">
-    <div class="flex flex-wrap items-center justify-between gap-2">
-      <h2 class="text-2xl font-bold tracking-tight">
-        Dashboard
-      </h2>
-      <div class="flex items-center space-x-2">
-        <BaseDateRangePicker />
-        <Button>Download</Button>
-      </div>
+    <div class="flex items-center justify-end gap-2">
+      <BaseDateRangePicker />
+      <Button>Download</Button>
     </div>
     <main class="@container/main flex flex-1 flex-col gap-4 md:gap-8">
       <div class="grid grid-cols-1 gap-4 *:data-[slot=card]:bg-gradient-to-t *:data-[slot=card]:shadow-xs @xl/main:grid-cols-2 @5xl/main:grid-cols-4">

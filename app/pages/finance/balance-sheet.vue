@@ -94,33 +94,30 @@ const trendData = [
   { quarter: 'Q3 2025', assets: 12600000, liabilities: 4340000, equity: 8260000 },
   { quarter: 'Q4 2025', assets: 12850000, liabilities: 4320000, equity: 8530000 },
 ]
+
+const { setHeader } = usePageHeader()
+setHeader({ title: 'Balance Sheet', icon: 'i-lucide-landmark', description: 'Consolidated statement of financial position' })
 </script>
 
 <template>
   <div class="w-full flex flex-col gap-6">
-    <!-- Header -->
-    <div class="flex flex-wrap items-center justify-between gap-4">
-      <div>
-        <h2 class="text-2xl font-bold tracking-tight">Balance Sheet</h2>
-        <p class="text-muted-foreground text-sm">Consolidated statement of financial position</p>
-      </div>
-      <div class="flex items-center gap-2">
-        <Select v-model="period">
-          <SelectTrigger class="w-36">
-            <SelectValue placeholder="Period" />
-          </SelectTrigger>
-          <SelectContent>
-            <SelectItem value="Q4 2025">Q4 2025</SelectItem>
-            <SelectItem value="Q3 2025">Q3 2025</SelectItem>
-            <SelectItem value="Q2 2025">Q2 2025</SelectItem>
-            <SelectItem value="Q1 2025">Q1 2025</SelectItem>
-          </SelectContent>
-        </Select>
-        <Button variant="outline">
-          <Icon name="i-lucide-download" class="mr-2 size-4" />
-          Export
-        </Button>
-      </div>
+    <!-- Period & Export -->
+    <div class="flex items-center justify-end gap-2">
+      <Select v-model="period">
+        <SelectTrigger class="w-36">
+          <SelectValue placeholder="Period" />
+        </SelectTrigger>
+        <SelectContent>
+          <SelectItem value="Q4 2025">Q4 2025</SelectItem>
+          <SelectItem value="Q3 2025">Q3 2025</SelectItem>
+          <SelectItem value="Q2 2025">Q2 2025</SelectItem>
+          <SelectItem value="Q1 2025">Q1 2025</SelectItem>
+        </SelectContent>
+      </Select>
+      <Button variant="outline">
+        <Icon name="i-lucide-download" class="mr-2 size-4" />
+        Export
+      </Button>
     </div>
 
     <!-- KPI Cards -->

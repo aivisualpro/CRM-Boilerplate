@@ -16,6 +16,9 @@ const props = defineProps<{
 const entity = computed(() => props.entityName || 'Record')
 const { items, isLoaded, create, update, remove, reset } = useCrud(props.storeKey, props.initialData)
 
+const { setHeader } = usePageHeader()
+setHeader({ title: props.title, description: props.description, icon: props.icon })
+
 // UI State
 const search = ref('')
 const currentPage = ref(1)
@@ -202,18 +205,17 @@ function getInitials(name: string): string {
 
 <template>
   <div class="w-full flex flex-col gap-6">
-    <!-- Header -->
-    <div class="flex flex-wrap items-start justify-between gap-4">
-      <div class="flex items-start gap-4">
-        <div class="flex items-center justify-center rounded-xl bg-primary/10 p-3">
-          <Icon :name="icon" class="size-7 text-primary" />
-        </div>
-        <div>
-          <h2 class="text-2xl font-bold tracking-tight">{{ title }}</h2>
-          <p class="mt-1 text-muted-foreground max-w-2xl">{{ description }}</p>
-        </div>
+
+    <!-- Toolbar -->
+    <div class="flex flex-wrap items-center justify-between gap-4">
+      <div class="relative flex-1 max-w-sm">
+        <Icon name="i-lucide-search" class="absolute left-3 top-1/2 -translate-y-1/2 size-4 text-muted-foreground" />
+        <Input v-model="search" placeholder="Search records..." class="pl-9" />
       </div>
       <div class="flex items-center gap-2">
+        <p class="text-sm text-muted-foreground tabular-nums hidden sm:block">
+          {{ filteredItems.length }} record{{ filteredItems.length !== 1 ? 's' : '' }}
+        </p>
         <Button variant="ghost" size="sm" @click="handleReset">
           <Icon name="i-lucide-rotate-ccw" class="mr-1 size-4" />
           Reset
@@ -223,17 +225,6 @@ function getInitials(name: string): string {
           Add {{ entity }}
         </Button>
       </div>
-    </div>
-
-    <!-- Search -->
-    <div class="flex flex-wrap items-center gap-4">
-      <div class="relative flex-1 max-w-sm">
-        <Icon name="i-lucide-search" class="absolute left-3 top-1/2 -translate-y-1/2 size-4 text-muted-foreground" />
-        <Input v-model="search" placeholder="Search records..." class="pl-9" />
-      </div>
-      <p class="text-sm text-muted-foreground tabular-nums">
-        {{ filteredItems.length }} record{{ filteredItems.length !== 1 ? 's' : '' }}
-      </p>
     </div>
 
     <!-- Table -->

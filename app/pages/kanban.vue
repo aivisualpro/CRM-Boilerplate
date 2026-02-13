@@ -13,20 +13,15 @@ function createColumn() {
   newColumnTitle.value = ''
   showNewColumn.value = false
 }
+
+const { setHeader } = usePageHeader()
+setHeader({ title: 'Kanban Board', icon: 'i-lucide-kanban', description: 'Visual task management with drag-and-drop' })
 </script>
 
 <template>
   <div class="h-full">
     <div class="flex flex-col gap-4 h-full">
-      <div class="flex flex-wrap items-center justify-between gap-2">
-        <div>
-          <h2 class="text-2xl font-bold tracking-tight">
-            Kanban Board
-          </h2>
-          <p class="text-muted-foreground">
-            Here&apos;s a list of your tasks for this month!
-          </p>
-        </div>
+      <div class="flex items-center justify-end">
         <Button size="sm" @click="showNewColumn = true">
           <Icon name="lucide:plus" />
           Add Column

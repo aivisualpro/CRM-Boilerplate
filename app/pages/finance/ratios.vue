@@ -123,32 +123,29 @@ const trendData = [
   { quarter: 'Q3 2025', roe: 37.8, roa: 24.8, margin: 17.3 },
   { quarter: 'Q4 2025', roe: 38.4, roa: 25.5, margin: 17.8 },
 ]
+
+const { setHeader } = usePageHeader()
+setHeader({ title: 'Financial Ratios', icon: 'i-lucide-chart-no-axes-combined', description: 'Key performance indicators with industry benchmarks' })
 </script>
 
 <template>
   <div class="w-full flex flex-col gap-6">
-    <!-- Header -->
-    <div class="flex flex-wrap items-center justify-between gap-4">
-      <div>
-        <h2 class="text-2xl font-bold tracking-tight">Financial Ratios</h2>
-        <p class="text-muted-foreground text-sm">Key performance indicators across 5 categories with industry benchmarks</p>
-      </div>
-      <div class="flex items-center gap-2">
-        <Select v-model="period">
-          <SelectTrigger class="w-36">
-            <SelectValue placeholder="Period" />
-          </SelectTrigger>
-          <SelectContent>
-            <SelectItem value="Q4 2025">Q4 2025</SelectItem>
-            <SelectItem value="Q3 2025">Q3 2025</SelectItem>
-            <SelectItem value="Q2 2025">Q2 2025</SelectItem>
-          </SelectContent>
-        </Select>
-        <Button variant="outline">
-          <Icon name="i-lucide-download" class="mr-2 size-4" />
-          Export
-        </Button>
-      </div>
+    <!-- Period & Export -->
+    <div class="flex items-center justify-end gap-2">
+      <Select v-model="period">
+        <SelectTrigger class="w-36">
+          <SelectValue placeholder="Period" />
+        </SelectTrigger>
+        <SelectContent>
+          <SelectItem value="Q4 2025">Q4 2025</SelectItem>
+          <SelectItem value="Q3 2025">Q3 2025</SelectItem>
+          <SelectItem value="Q2 2025">Q2 2025</SelectItem>
+        </SelectContent>
+      </Select>
+      <Button variant="outline">
+        <Icon name="i-lucide-download" class="mr-2 size-4" />
+        Export
+      </Button>
     </div>
 
     <!-- Quick Stats -->
