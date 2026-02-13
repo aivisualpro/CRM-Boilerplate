@@ -171,6 +171,30 @@ export const navMenu: NavMenu[] = [
         icon: 'i-lucide-percent',
         link: '/finance/taxes',
       },
+      {
+        title: 'Balance Sheet',
+        icon: 'i-lucide-landmark',
+        link: '/finance/balance-sheet',
+        new: true,
+      },
+      {
+        title: 'Income Statement',
+        icon: 'i-lucide-receipt',
+        link: '/finance/income-statement',
+        new: true,
+      },
+      {
+        title: 'Financial Ratios',
+        icon: 'i-lucide-chart-no-axes-combined',
+        link: '/finance/ratios',
+        new: true,
+      },
+      {
+        title: 'Business Health',
+        icon: 'i-lucide-heart-pulse',
+        link: '/finance/business-health',
+        new: true,
+      },
     ],
   },
   {
@@ -653,11 +677,11 @@ export const navMenuBottom: NavMenuItems = [
   {
     title: 'Help & Support',
     icon: 'i-lucide-circle-help',
-    link: 'https://github.com/aivisualpro/CRM-Boilerplate',
+    link: '/docs',
   },
   {
     title: 'Feedback',
     icon: 'i-lucide-send',
-    link: 'https://github.com/aivisualpro/CRM-Boilerplate',
+    link: '/docs',
   },
 ]

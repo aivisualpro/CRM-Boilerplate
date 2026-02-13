@@ -1,3 +1,17 @@
+export interface Subtask {
+  id: string
+  title: string
+  completed: boolean
+}
+
+export interface Comment {
+  id: string
+  author: string
+  avatar?: string
+  text: string
+  createdAt: Date | number | string
+}
+
 export interface Task {
   id: string
   title: string
@@ -11,6 +25,8 @@ export interface Task {
   dueDate?: Date | number | string
   status?: string
   labels?: string[]
+  subtasks?: Subtask[]
+  comments?: Comment[]
   createdAt: Date | number | string
 }
 

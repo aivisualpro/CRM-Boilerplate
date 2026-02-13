@@ -181,12 +181,7 @@ const industries = [
               Explore Dashboard
             </NuxtLink>
           </Button>
-          <Button variant="outline" size="lg" as-child>
-            <a href="https://github.com/aivisualpro/CRM-Boilerplate" target="_blank">
-              <Icon name="i-lucide-github" class="mr-2 size-4" />
-              GitHub
-            </a>
-          </Button>
+
         </div>
       </div>
     </div>
@@ -421,14 +416,7 @@ const industries = [
             <Badge variant="secondary">Cloud Architecture</Badge>
             <Badge variant="secondary">Graphics Design</Badge>
           </div>
-          <div class="flex gap-3 mt-6">
-            <Button variant="outline" size="sm" as-child>
-              <a href="https://github.com/aivisualpro" target="_blank">
-                <Icon name="i-lucide-github" class="mr-1 size-4" />
-                GitHub
-              </a>
-            </Button>
-          </div>
+
         </div>
         <div class="flex items-center justify-center bg-muted/50 p-8 md:w-80">
           <div class="flex flex-col items-center gap-3 text-center">
@@ -458,7 +446,7 @@ const industries = [
       <CardContent>
         <div class="rounded-lg bg-muted/50 border p-4 font-mono text-sm space-y-2">
           <p class="text-muted-foreground"># Clone the repository</p>
-          <p>git clone https://github.com/aivisualpro/CRM-Boilerplate.git</p>
+          <p>git clone your-repo-url.git</p>
           <p class="text-muted-foreground mt-3"># Install dependencies</p>
           <p>cd CRM-Boilerplate && pnpm install</p>
           <p class="text-muted-foreground mt-3"># Start development server</p>
@@ -472,7 +460,7 @@ const industries = [
     <!-- Footer -->
     <div class="text-center py-4 border-t">
       <p class="text-sm text-muted-foreground">
-        Built with ❤️ by <strong>Adeel Jabbar</strong> · <a href="https://github.com/aivisualpro" target="_blank" class="text-primary hover:underline">AI Visual Pro</a> · MIT License
+        Built with ❤️ by <strong>Adeel Jabbar</strong> · <strong class="text-primary">AI Visual Pro</strong> · MIT License
       </p>
     </div>
   </div>

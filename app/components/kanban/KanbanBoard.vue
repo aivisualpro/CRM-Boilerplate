@@ -12,7 +12,10 @@ import Draggable from 'vuedraggable'
 import { useKanban } from '~/composables/useKanban'
 import CardFooter from '../ui/card/CardFooter.vue'
 
-const { board, addTask, updateTask, removeTask, setColumns, removeColumn, updateColumn } = useKanban()
+const { board, addTask, updateTask, removeTask, setColumns, removeColumn, updateColumn, addSubtask, toggleSubtask, removeSubtask, addComment, removeComment } = useKanban()
+
+const newSubtaskTitle = ref('')
+const newCommentText = ref('')
 
 const df = new DateFormatter('en-US', {
   dateStyle: 'medium',
@@ -274,26 +277,92 @@ const OPTIONS: UseTimeAgoOptions<false, UseTimeAgoUnitNamesDefault> = {
                   <p class="font-medium leading-5 mt-1">
                     {{ t.title }}
                   </p>
-                  <div class="mt-3 flex items-center gap-1.5">
-                    <badge variant="outline">
-                      Web
-                    </badge>
-                    <badge variant="destructive">
-                      UI/UX
-                    </badge>
+                  <div v-if="t.labels?.length" class="mt-3 flex items-center gap-1.5 flex-wrap">
+                    <Badge v-for="label in t.labels" :key="label" variant="outline" class="text-xs">
+                      {{ label }}
+                    </Badge>
                   </div>
                   <div class="mt-3 flex items-center justify-between gap-2">
                     <div class="flex items-center gap-2">
-                      <div class="flex items-center text-sm text-muted-foreground gap-1">
-                        <Icon name="lucide:folder" />
-                        <span>4</span>
-                      </div>
-                      <div class="flex items-center text-sm text-muted-foreground gap-1">
-                        <Icon name="lucide:message-square" />
-                        <span>2</span>
-                      </div>
-                      <div class="flex items-center text-sm text-muted-foreground gap-1">
-                        <Icon name="lucide:clock-fading" />
+                      <!-- Subtasks Popover -->
+                      <Popover>
+                        <PopoverTrigger as-child>
+                          <button class="flex items-center text-sm text-muted-foreground gap-1 hover:text-foreground transition-colors cursor-pointer">
+                            <Icon name="lucide:square-check-big" class="size-3.5" />
+                            <span class="tabular-nums">{{ t.subtasks?.filter(s => s.completed).length || 0 }}/{{ t.subtasks?.length || 0 }}</span>
+                          </button>
+                        </PopoverTrigger>
+                        <PopoverContent class="w-72 p-0" align="start" @click.stop>
+                          <div class="px-3 py-2 border-b">
+                            <p class="text-sm font-semibold">Subtasks</p>
+                          </div>
+                          <div class="max-h-48 overflow-y-auto">
+                            <div v-if="!t.subtasks?.length" class="px-3 py-4 text-sm text-muted-foreground text-center">No subtasks yet</div>
+                            <div v-for="st in t.subtasks" :key="st.id" class="flex items-center gap-2 px-3 py-1.5 hover:bg-accent/50 group">
+                              <Checkbox :checked="st.completed" @update:checked="toggleSubtask(col.id, t.id, st.id)" />
+                              <span class="text-sm flex-1" :class="st.completed ? 'line-through text-muted-foreground' : ''">{{ st.title }}</span>
+                              <button class="opacity-0 group-hover:opacity-100 text-muted-foreground hover:text-destructive transition-all cursor-pointer" @click="removeSubtask(col.id, t.id, st.id)">
+                                <Icon name="lucide:x" class="size-3.5" />
+                              </button>
+                            </div>
+                          </div>
+                          <div class="border-t px-2 py-2">
+                            <form class="flex gap-1.5" @submit.prevent="() => { if (newSubtaskTitle.trim()) { addSubtask(col.id, t.id, newSubtaskTitle.trim()); newSubtaskTitle = '' } }">
+                              <Input v-model="newSubtaskTitle" placeholder="Add subtask..." class="h-7 text-xs" />
+                              <Button type="submit" size="icon" variant="ghost" class="size-7 shrink-0">
+                                <Icon name="lucide:plus" class="size-3.5" />
+                              </Button>
+                            </form>
+                          </div>
+                        </PopoverContent>
+                      </Popover>
+
+                      <!-- Comments Popover -->
+                      <Popover>
+                        <PopoverTrigger as-child>
+                          <button class="flex items-center text-sm text-muted-foreground gap-1 hover:text-foreground transition-colors cursor-pointer">
+                            <Icon name="lucide:message-square" class="size-3.5" />
+                            <span class="tabular-nums">{{ t.comments?.length || 0 }}</span>
+                          </button>
+                        </PopoverTrigger>
+                        <PopoverContent class="w-80 p-0" align="start" @click.stop>
+                          <div class="px-3 py-2 border-b">
+                            <p class="text-sm font-semibold">Comments</p>
+                          </div>
+                          <div class="max-h-56 overflow-y-auto">
+                            <div v-if="!t.comments?.length" class="px-3 py-4 text-sm text-muted-foreground text-center">No comments yet</div>
+                            <div v-for="cm in t.comments" :key="cm.id" class="px-3 py-2 border-b last:border-b-0 group">
+                              <div class="flex items-center justify-between gap-2">
+                                <div class="flex items-center gap-2">
+                                  <Avatar class="size-5">
+                                    <AvatarImage :src="cm.avatar || ''" :alt="cm.author" />
+                                    <AvatarFallback class="text-[8px]">{{ cm.author?.slice(0, 2).toUpperCase() }}</AvatarFallback>
+                                  </Avatar>
+                                  <span class="text-xs font-medium">{{ cm.author }}</span>
+                                </div>
+                                <div class="flex items-center gap-1">
+                                  <span class="text-[10px] text-muted-foreground">{{ useTimeAgo(cm.createdAt ?? '', OPTIONS) }}</span>
+                                  <button class="opacity-0 group-hover:opacity-100 text-muted-foreground hover:text-destructive transition-all cursor-pointer" @click="removeComment(col.id, t.id, cm.id)">
+                                    <Icon name="lucide:x" class="size-3" />
+                                  </button>
+                                </div>
+                              </div>
+                              <p class="text-xs text-muted-foreground mt-1 leading-relaxed">{{ cm.text }}</p>
+                            </div>
+                          </div>
+                          <div class="border-t px-2 py-2">
+                            <form class="flex gap-1.5" @submit.prevent="() => { if (newCommentText.trim()) { addComment(col.id, t.id, newCommentText.trim()); newCommentText = '' } }">
+                              <Input v-model="newCommentText" placeholder="Write a comment..." class="h-7 text-xs" />
+                              <Button type="submit" size="icon" variant="ghost" class="size-7 shrink-0">
+                                <Icon name="lucide:send" class="size-3.5" />
+                              </Button>
+                            </form>
+                          </div>
+                        </PopoverContent>
+                      </Popover>
+
+                      <div v-if="t.dueDate" class="flex items-center text-sm text-muted-foreground gap-1">
+                        <Icon name="lucide:clock-fading" class="size-3.5" />
                         <span>{{ useTimeAgo(t.dueDate ?? '', OPTIONS) }}</span>
                       </div>
                     </div>
@@ -306,12 +375,15 @@ const OPTIONS: UseTimeAgoOptions<false, UseTimeAgoUnitNamesDefault> = {
                           {{ t.priority }}
                         </TooltipContent>
                       </Tooltip>
-                      <Avatar class="size-6">
-                        <AvatarImage src="/avatars/avatartion.png" alt="avatar" />
-                        <AvatarFallback class="text-[10px]">
-                          DP
-                        </AvatarFallback>
-                      </Avatar>
+                      <Tooltip v-if="t.assignee">
+                        <TooltipTrigger as-child>
+                          <Avatar class="size-6">
+                            <AvatarImage :src="t.assignee.avatar || '/avatars/avatartion.png'" :alt="t.assignee.name" />
+                            <AvatarFallback class="text-[10px]">{{ t.assignee.name?.slice(0, 2).toUpperCase() }}</AvatarFallback>
+                          </Avatar>
+                        </TooltipTrigger>
+                        <TooltipContent>{{ t.assignee.name }}</TooltipContent>
+                      </Tooltip>
                     </div>
                   </div>
                 </div>
