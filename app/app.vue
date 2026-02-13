@@ -15,7 +15,7 @@ useHead({
     { key: 'theme-color', name: 'theme-color', content: color },
   ],
   link: [
-    { rel: 'icon', href: '/favicon.ico' },
+    { rel: 'icon', type: 'image/svg+xml', href: '/favicon.svg' },
   ],
   htmlAttrs: {
     lang: 'en',
@@ -25,8 +25,8 @@ useHead({
   },
 })
 
-const title = 'Nuxt Shadcn-Vue TailwindCSS 4 - Dashboard Template'
-const description = 'This dashboard, built with Nuxt, Shadcn Vue, and TailwindCSS. It includes a dark mode toggle and is optimized for performance and data efficiency.'
+const title = 'AI Visual Pro — Enterprise ERP & CRM Platform'
+const description = 'A comprehensive enterprise resource planning and CRM platform by AI Visual Pro. Built with Nuxt 4, Shadcn Vue, and TailwindCSS — featuring 12+ modules, full CRUD, dark mode, and multi-theme support.'
 
 useSeoMeta({
   title,

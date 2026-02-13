@@ -46,7 +46,7 @@ export function useCrud<T extends Record<string, any>>(storeKey: string, initial
   }
 
   function create(item: Partial<T>): T {
-    const newItem = { ...item, id: nanoid(8), createdAt: new Date().toISOString() } as T
+    const newItem = { ...item, id: nanoid(8), createdAt: new Date().toISOString() } as unknown as T
     items.value.unshift(newItem)
     save()
     return newItem
@@ -55,7 +55,7 @@ export function useCrud<T extends Record<string, any>>(storeKey: string, initial
   function update(id: string, data: Partial<T>) {
     const index = items.value.findIndex((i: any) => i.id === id)
     if (index !== -1) {
-      items.value[index] = { ...items.value[index], ...data }
+      items.value[index] = { ...items.value[index], ...data } as T
       save()
     }
   }

@@ -38,7 +38,7 @@ const user: {
 } = {
   name: 'Adeel Jabbar',
   email: 'adeel@aivisualpro.com',
-  avatar: '/avatars/avatartion.png',
+  avatar: '/avatars/adeel.png',
 }
 
 const { sidebar } = useAppSettings()
