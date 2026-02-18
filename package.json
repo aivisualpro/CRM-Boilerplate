@@ -3,14 +3,8 @@
   "type": "module",
   "version": "1.0.2",
   "packageManager": "pnpm@10.10.0",
-  "description": "Shadcn Dashboard built with Nuxt",
-  "author": "Dian Pratama <dianpratama2@gmail.com>",
-  "license": "MIT",
-  "homepage": "https://dashboard.dianprata.com/",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/dianprata/nuxt-shadcn-dashboard.git"
-  },
+  "description": "Dashboard built with Nuxt",
+  "author": "Dian Pratama <admin@aivisualpro.com>",
   "keywords": [
     "dashboard",
     "admin-dashboard",
@@ -78,6 +72,7 @@
     "@vueuse/core": "^12.8.2",
     "@vueuse/math": "^12.8.2",
     "@vueuse/nuxt": "^12.8.2",
+    "baseline-browser-mapping": "^2.9.19",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "date-fns": "^4.1.0",

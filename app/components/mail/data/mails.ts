@@ -177,7 +177,7 @@ export const accounts = [
   {
     label: 'Alicia Koch',
     email: 'alicia@example.com',
-    icon: 'ion:logo-vercel',
+    icon: 'lucide:triangle',
   },
   {
     label: 'Alicia Koch',
