@@ -154,7 +154,7 @@ import { BadgeCheckIcon, ChevronRightIcon, Plus } from 'lucide-vue-next'
             <Item variant="outline">
               <ItemMedia>
                 <Avatar class="size-10">
-                  <AvatarImage src="https://github.com/evilrabbit.png" />
+                  <AvatarImage src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?&w=128&h=128&dpr=2&q=80" />
                   <AvatarFallback>ER</AvatarFallback>
                 </Avatar>
               </ItemMedia>
@@ -177,20 +177,20 @@ import { BadgeCheckIcon, ChevronRightIcon, Plus } from 'lucide-vue-next'
               <ItemMedia>
                 <div class="*:ring-background flex -space-x-2 *:ring-2 *:grayscale">
                   <Avatar class="hidden sm:flex">
-                    <AvatarImage src="https://github.com/shadcn.png" alt="@shadcn" />
+                    <AvatarImage src="https://images.unsplash.com/photo-1599566150163-29194dcabd9c?&w=128&h=128&dpr=2&q=80" alt="User 1" />
                     <AvatarFallback>CN</AvatarFallback>
                   </Avatar>
                   <Avatar class="hidden sm:flex">
                     <AvatarImage
-                      src="https://github.com/maxleiter.png"
-                      alt="@maxleiter"
+                      src="https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?&w=128&h=128&dpr=2&q=80"
+                      alt="User 2"
                     />
                     <AvatarFallback>LR</AvatarFallback>
                   </Avatar>
                   <Avatar>
                     <AvatarImage
-                      src="https://github.com/evilrabbit.png"
-                      alt="@evilrabbit"
+                      src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?&w=128&h=128&dpr=2&q=80"
+                      alt="User 3"
                     />
                     <AvatarFallback>ER</AvatarFallback>
                   </Avatar>

@@ -43,7 +43,7 @@
         <CardContent>
           <div class="h-100px w-full flex items-center justify-center gap-4 overflow-hidden sm:h-200px">
             <Avatar>
-              <AvatarImage src="https://github.com/unovue.png" alt="@unovue" />
+              <AvatarImage src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?&w=128&h=128&dpr=2&q=80" alt="User" />
               <AvatarFallback>UV</AvatarFallback>
             </Avatar>
             <Avatar>

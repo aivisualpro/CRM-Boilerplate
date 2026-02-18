@@ -11,7 +11,7 @@
 [![shadcn/ui](https://img.shields.io/badge/shadcn--vue-2.3-000000?style=for-the-badge&logo=shadcnui&logoColor=white)](https://www.shadcn-vue.com)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow?style=for-the-badge)](./LICENSE)
 
-[Live Demo](#) · [Report Bug](https://github.com/aivisualpro/CRM-Boilerplate/issues) · [Request Feature](https://github.com/aivisualpro/CRM-Boilerplate/issues)
+[Live Demo](#) · [Report Bug](#) · [Request Feature](#)
 
 </div>
 
@@ -49,8 +49,8 @@ This boilerplate eliminates weeks of setup time by providing a fully structured,
 | | |
 |---|---|
 | **Name** | Adeel Jabbar |
-| **GitHub** | [@aivisualpro](https://github.com/aivisualpro) |
-| **Repository** | [CRM-Boilerplate](https://github.com/aivisualpro/CRM-Boilerplate) |
+| **Website** | [aivisualpro.com](https://aivisualpro.com) |
+| **Repository** | CRM-Boilerplate |
 
 ---
 
@@ -73,7 +73,7 @@ This boilerplate eliminates weeks of setup time by providing a fully structured,
 | [Reka UI](https://reka-ui.com) | 2.5 | Headless UI primitives (powers shadcn-vue) |
 | [Lucide Icons](https://lucide.dev) | 0.482 | Beautiful open-source icon set |
 | [Radix Icons](https://www.radix-ui.com/icons) | — | Additional icon set |
-| [tw-animate-css](https://github.com/nicepkg/tw-animate-css) | 1.4 | Tailwind CSS animation utilities |
+| [tw-animate-css](https://www.npmjs.com/package/tw-animate-css) | 1.4 | Tailwind CSS animation utilities |
 
 ### State & Data
 | Technology | Purpose |
@@ -94,21 +94,21 @@ This boilerplate eliminates weeks of setup time by providing a fully structured,
 | Technology | Purpose |
 |---|---|
 | [date-fns](https://date-fns.org) | Modern date utility library |
-| [nanoid](https://github.com/ai/nanoid) | Tiny, secure URL-friendly unique string ID generator |
+| [nanoid](https://www.npmjs.com/package/nanoid) | Tiny, secure URL-friendly unique string ID generator |
 | [Embla Carousel](https://www.embla-carousel.com) | Lightweight carousel library |
-| [vuedraggable](https://sortablejs.github.io/vue.draggable.next/) | Drag-and-drop component (Kanban) |
+| [vuedraggable](https://www.npmjs.com/package/vuedraggable) | Drag-and-drop component (Kanban) |
 | [class-variance-authority](https://cva.style) | Component variant management |
-| [clsx](https://github.com/lukeed/clsx) + [tailwind-merge](https://github.com/dcastil/tailwind-merge) | Conditional class utilities |
-| [vaul-vue](https://github.com/unovue/vaul-vue) | Drawer component for Vue |
+| [clsx](https://www.npmjs.com/package/clsx) + [tailwind-merge](https://www.npmjs.com/package/tailwind-merge) | Conditional class utilities |
+| [vaul-vue](https://www.npmjs.com/package/vaul-vue) | Drawer component for Vue |
 | [vue-sonner](https://vue-sonner.vercel.app) | Toast notification system |
 
 ### Developer Experience
 | Technology | Purpose |
 |---|---|
-| [ESLint](https://eslint.org) + [@antfu/eslint-config](https://github.com/antfu/eslint-config) | Linting & code formatting |
+| [ESLint](https://eslint.org) + [@antfu/eslint-config](https://www.npmjs.com/package/@antfu/eslint-config) | Linting & code formatting |
 | [@nuxt/fonts](https://fonts.nuxt.com) | Automatic font optimization |
 | [@nuxtjs/color-mode](https://color-mode.nuxtjs.org) | Dark/light mode switching |
-| [release-it](https://github.com/release-it/release-it) | Automated versioning & releases |
+| [release-it](https://www.npmjs.com/package/release-it) | Automated versioning & releases |
 | [Renovate](https://renovatebot.com) | Automated dependency updates |
 
 ---
@@ -269,7 +269,7 @@ CRM-Boilerplate/
 
 ```bash
 # 1. Clone the repository
-git clone https://github.com/aivisualpro/CRM-Boilerplate.git
+git clone <your-repository-url>
 
 # 2. Navigate to the project
 cd CRM-Boilerplate
@@ -422,7 +422,7 @@ This project is licensed under the **MIT License** — see the [LICENSE](./LICEN
 
 <div align="center">
 
-**Built with ❤️ by [Adeel Jabbar](https://github.com/aivisualpro)**
+**Built with ❤️ by [Adeel Jabbar](https://aivisualpro.com)**
 
 </div>
 ]]>

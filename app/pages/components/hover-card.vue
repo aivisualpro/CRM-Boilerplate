@@ -51,7 +51,7 @@
               <HoverCardContent class="w-80">
                 <div class="flex justify-between space-x-4">
                   <Avatar>
-                    <AvatarImage src="https://github.com/vuejs.png" />
+                    <AvatarImage src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?&w=128&h=128&dpr=2&q=80" />
                     <AvatarFallback>VC</AvatarFallback>
                   </Avatar>
                   <div class="space-y-1">
